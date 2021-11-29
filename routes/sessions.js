@@ -4,9 +4,12 @@ var router = express.Router();
 const sessions = [];
 
 router.post("/", (req, res) => {
-  const sessionId = sessions.length;
-  sessions.push({});
+  const sessionId = Math.floor(Math.random() * 10000);
   res.json({ sessionId });
+});
+
+router.get("/:id/raw", (req, res) => {
+  res.send(sessions[req.params.id].data);
 });
 
 router.get("/:id", (req, res) => {
